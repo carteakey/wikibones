@@ -82,7 +82,6 @@ All scaffold files live at the root or in `.claude/skills/` in the wikibones rep
 ```
 ${SCAFFOLD_BASE}/CLAUDE.md
 ${SCAFFOLD_BASE}/AGENTS.md
-${SCAFFOLD_BASE}/MANIFEST.md
 ${SCAFFOLD_BASE}/llm-wiki.md
 ${SCAFFOLD_BASE}/.claude/skills/ingest/SKILL.md
 ${SCAFFOLD_BASE}/.claude/skills/digest/SKILL.md
@@ -130,6 +129,7 @@ publish.json
 ### Skip — do not fetch or compare
 
 - `.claude/settings.json` — local agent settings, not a scaffold file
+- `MANIFEST.md` — live ingest state, user data; never overwrite
 - `wiki/` — all wiki pages are user content
 - `raw/` — immutable source documents
 
