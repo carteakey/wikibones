@@ -83,7 +83,7 @@ wikibones/
 Click **Use this template** on GitHub, or:
 
 ```bash
-git clone https://github.com/careteakey/wikibones my-wiki
+git clone https://github.com/carteakey/wikibones my-wiki
 cd my-wiki && rm -rf .git && git init
 ```
 
@@ -120,7 +120,7 @@ Skills are markdown workflow files in `.claude/skills/<name>/SKILL.md`. Claude C
 | **lint** | `/lint` | Scan for orphans, broken `[[wikilinks]]`, stale claims, missing cross-links |
 | **ingest-tweets** | `/ingest-tweets` | Browser-automate a Twitter/X search and pull threads into the wiki |
 | **sync-wikis** | `/sync-wikis` | Push scaffold improvements to sibling wiki instances in the same parent folder |
-| **upgrade** | `/upgrade` | Pull latest skill files and CLAUDE.md template from `careteakey/wikibones` |
+| **upgrade** | `/upgrade` | Pull latest skill files and CLAUDE.md template from `carteakey/wikibones` |
 
 ---
 

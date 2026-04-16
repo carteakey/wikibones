@@ -5,7 +5,7 @@ description: Upgrade this wiki's scaffold files (CLAUDE.md, skills) to match the
 
 # Upgrade scaffold
 
-Bring this wiki's scaffold files up to date with the latest [wikibones](https://github.com/careteakey/wikibones) release.
+Bring this wiki's scaffold files up to date with the latest [wikibones](https://github.com/carteakey/wikibones) release.
 
 ## How it works
 
@@ -16,13 +16,13 @@ If `.claude/scaffold-version` doesn't exist, this wiki predates versioning — t
 ## Step 1: Get the latest commit SHA
 
 ```sh
-LATEST=$(curl -fsS https://api.github.com/repos/careteakey/wikibones/commits/main 2>/dev/null \
+LATEST=$(curl -fsS https://api.github.com/repos/carteakey/wikibones/commits/main 2>/dev/null \
   | python3 -c "import sys,json; print(json.load(sys.stdin)['sha'])" 2>/dev/null)
 ```
 
 If `python3` is unavailable, use `grep` + `cut`:
 ```sh
-LATEST=$(curl -fsS https://api.github.com/repos/careteakey/wikibones/commits/main 2>/dev/null \
+LATEST=$(curl -fsS https://api.github.com/repos/carteakey/wikibones/commits/main 2>/dev/null \
   | grep '"sha"' | head -1 | cut -d'"' -f4)
 ```
 
@@ -38,7 +38,7 @@ BASE=$(cat .claude/scaffold-version 2>/dev/null || echo "")
 Use the GitHub compare API, filtering for scaffold files:
 
 ```sh
-curl -fsS "https://api.github.com/repos/careteakey/wikibones/compare/${BASE}...${LATEST}" \
+curl -fsS "https://api.github.com/repos/carteakey/wikibones/compare/${BASE}...${LATEST}" \
   | python3 -c "
 import sys, json
 files = json.load(sys.stdin).get('files', [])
@@ -72,7 +72,7 @@ fetch_file() {
   fi
 }
 
-SCAFFOLD_BASE="https://raw.githubusercontent.com/careteakey/wikibones/main"
+SCAFFOLD_BASE="https://raw.githubusercontent.com/carteakey/wikibones/main"
 ```
 
 ### Scaffold file URLs
