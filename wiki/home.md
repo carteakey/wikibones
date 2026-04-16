@@ -1,40 +1,31 @@
 # Welcome to your wiki
 
-This is a fresh wiki, ready to be filled with your reading and thinking. Start by adding sources — articles, highlights, notes — and let your agent compile them into linked, browsable pages.
+This is a fresh wiki, ready to be filled with your reading and thinking. Drop sources into `raw/`, open an agent, and start ingesting.
 
 ## Open your agent
 
-Use the built-in terminal in the right sidebar, or open your own terminal:
-
-**Claude Code**
-```
+```bash
+# Claude Code
 cd {{WIKI_PATH}} && claude
-```
 
-**Codex**
-```
+# Codex / any agent
 cd {{WIKI_PATH}} && codex
-```
-
-**Cursor**
-```
-Open {{WIKI_PATH}} in Cursor
 ```
 
 ## Seed your wiki
 
 Once your agent is running, try:
 
-- **Import from Readwise:** `/import-readwise`
+- **Ingest a file:** "Ingest the files in `raw/`"
 - **Ingest an article:** "Ingest this article: [paste URL]"
-- **Import existing files:** "Ingest the files in ~/my-notes/ into this wiki"
+- **Import existing notes:** "Ingest the files in ~/my-notes/ into this wiki"
 - **Start from a topic:** "Start a wiki about [your topic]"
 
 Your wiki grows every time you add a source. The agent reads it, creates summary pages, and links them to everything else you know.
 
 ---
 
-This is your project. You can change anything about it with your agent — the styles, the structure of your wiki pages, the build pipeline. Make it your own.
+This is your scaffold. Customize `CLAUDE.md` to fit your domain, add your own skills, and make it yours. Use `/sync-wikis` to propagate changes to sibling wikis, `/upgrade` to pull the latest wikibones from GitHub.
 
 ## What's here
 
