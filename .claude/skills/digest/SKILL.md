@@ -36,7 +36,7 @@ If the user didn't name specific files, check which source-summary pages exist b
 
 ```bash
 # Find source-summary pages (have type: frontmatter)
-grep -l "^type:" wiki/*.md
+grep -rl "^type:" wiki/sources/
 ```
 
 Confirm with the user before digesting if there's ambiguity.
@@ -75,7 +75,7 @@ If using subagents, launch one with this brief (adapt per run). Otherwise, follo
 >
 > 4. **Update `wiki/index.md`** to list every new page under the right category.
 >
-> 5. **Prepend one log entry per source digested** to `wiki/log.md` (below the header): `## [YYYY-MM-DD HH:MM] digest | <title>`. Newest entries at top.
+> 5. **Append one log entry per source digested** to `wiki/log.md`: `## [YYYY-MM-DD HH:MM] digest | <title>`.
 >
 > **Rules:**
 >
