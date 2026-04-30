@@ -109,6 +109,105 @@ Then tell it to ingest: `/ingest` or "ingest the files in raw/".
 
 ---
 
+## Viewing your wiki
+
+wikibones ships with `serve.py` — a zero-framework local wiki server. It renders any wikibones `wiki/` directory as a Wikipedia-style web app with full wikilink navigation, SVG diagrams, images, and search.
+
+### Quick start
+
+```bash
+# Install deps (once)
+pip install -r requirements-viewer.txt
+
+# Serve this wiki
+python serve.py
+
+# Serve a different wiki
+python serve.py --wiki-path /path/to/other-wiki/wiki
+
+# Custom port / host
+python serve.py --port 8080 --host 0.0.0.0
+```
+
+Open [http://localhost:7000](http://localhost:7000).
+
+### Options
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--wiki-path` | `./wiki` | Path to the `wiki/` directory |
+| `--port` | `7000` | Port to listen on |
+| `--host` | `127.0.0.1` | Bind address (`0.0.0.0` for LAN) |
+
+All three can also be set via env vars: `WIKI_PATH`, `WIKI_PORT`, `WIKI_HOST`.
+
+### Features
+
+- **Wikilinks** — `[[page-name]]` renders as a clickable link; broken links shown in red
+- **SVG diagrams** — ` ```svg ``` ` fenced blocks render inline (concept maps, flow charts)
+- **Images** — `wiki/assets/` images embedded as base64 data URIs; no broken img tags
+- **Frontmatter meta** — `type`, `date`, `author`, `url` shown as tag chips on source pages
+- **Search** — live-filter the sidebar nav (or press `/` to focus the search box)
+- **Auto-discovery** — nav is built from the filesystem; no config needed
+- **Portable** — single file, no framework, works on any Python 3.10+ install
+
+### Publishing with Quartz
+
+Use `serve.py` when you want the fastest local viewer. Use [Quartz](https://quartz.jzhao.xyz/) when you want a polished static website with Obsidian-style wikilinks, backlinks, graph navigation, and deployable HTML.
+
+Recommended layout:
+
+```text
+~/wikis/my-wiki/              # wikibones source repo
+~/services/my-wiki-quartz/    # Quartz app clone
+```
+
+Quick setup:
+
+```bash
+git clone https://github.com/jackyzha0/quartz.git ~/services/my-wiki-quartz
+cd ~/services/my-wiki-quartz
+npm i
+npx quartz create
+rm -rf content
+ln -s ~/wikis/my-wiki/wiki content
+npx quartz build --serve
+```
+
+Open [http://localhost:8080](http://localhost:8080).
+
+Keep the wikibones repo as the source of truth. Quartz should be the renderer, not the content owner. For rebuilds:
+
+```bash
+cd ~/services/my-wiki-quartz
+git -C ~/wikis/my-wiki pull --ff-only
+npx quartz build
+```
+
+Quartz does not provide app-level auth because it emits static files. Put auth in front of the output: Tailscale Serve for private tailnet access, Caddy basic auth for a password prompt, or Cloudflare Access if you intentionally publish outside your network.
+
+### Optional service inventory
+
+For infrastructure or homelab wikis, wikibones includes an optional service-inventory template:
+
+```bash
+cp -R templates/service-inventory/wiki/* wiki/
+```
+
+This adds:
+
+- `wiki/services/example-service.md` — frontmatter shape for one service per file
+- `wiki/service-moc.base` — Obsidian Base with Active, Disabled, Deleted, and All views
+- `wiki/service-moc.md` — Markdown MOC explaining service lifecycle states
+
+The service lifecycle field is `state`:
+
+- `active` — intentionally part of the current system
+- `disabled` — intentionally stopped or not currently deployed
+- `deleted` — removed, reset away, obsolete, or no longer worth running
+
+---
+
 ## Skills
 
 Skills are markdown workflow files in `.claude/skills/<name>/SKILL.md`. Claude Code discovers them as slash commands. Any agent can read the file and follow the steps manually.

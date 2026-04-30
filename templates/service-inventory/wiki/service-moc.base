@@ -1,0 +1,111 @@
+filters:
+  and:
+    - file.inFolder("services")
+properties:
+  note.state:
+    displayName: State
+  note.status:
+    displayName: Runtime Status
+  note.service:
+    displayName: Service
+  note.machine:
+    displayName: Machine
+  note.category:
+    displayName: Category
+  note.tailscale_url:
+    displayName: Tailscale URL
+  note.public_url:
+    displayName: Public URL
+  note.health_check:
+    displayName: Health Check
+  note.username:
+    displayName: Username
+  note.password:
+    displayName: Password
+  note.docs:
+    displayName: Docs
+  note.github:
+    displayName: GitHub
+  note.raw:
+    displayName: Raw Source
+views:
+  - type: table
+    name: Active
+    filters:
+      and:
+        - note.state == "active"
+    order:
+      - file.name
+      - note.state
+      - note.status
+      - note.machine
+      - note.category
+      - note.tailscale_url
+      - note.public_url
+      - note.health_check
+      - note.username
+      - note.password
+      - note.docs
+      - note.github
+    sort:
+      - property: note.machine
+        direction: ASC
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: Disabled
+    filters:
+      and:
+        - note.state == "disabled"
+    order:
+      - file.name
+      - note.state
+      - note.status
+      - note.machine
+      - note.category
+      - note.tailscale_url
+      - note.public_url
+      - note.raw
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: Deleted
+    filters:
+      and:
+        - note.state == "deleted"
+    order:
+      - file.name
+      - note.state
+      - note.status
+      - note.machine
+      - note.category
+      - note.tailscale_url
+      - note.public_url
+      - note.raw
+    sort:
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: All
+    order:
+      - file.name
+      - note.state
+      - note.status
+      - note.machine
+      - note.category
+      - note.tailscale_url
+      - note.public_url
+      - note.health_check
+      - note.username
+      - note.password
+      - note.docs
+      - note.github
+      - note.raw
+    sort:
+      - property: note.state
+        direction: ASC
+      - property: note.machine
+        direction: ASC
+      - property: file.name
+        direction: ASC

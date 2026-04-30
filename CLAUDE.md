@@ -17,6 +17,7 @@ This wiki covers **[domain]** — [what it includes]. [Other domains] are out of
   - `index.md` — agent catalog. Flat list of every page with a one-line summary, grouped by category.
   - `log.md` — append-only chronological log.
   - `sources/` — source-summary pages (one per ingested source).
+- `templates/` — optional wiki patterns that can be copied into a new wiki, such as service inventory pages and Obsidian Bases.
 
 ## Conventions
 
@@ -24,6 +25,41 @@ This wiki covers **[domain]** — [what it includes]. [Other domains] are out of
 - Every claim should cite a source: `([[source-slug]])`.
 - Source-summary pages start with a frontmatter block: `type`, `date`, `author`, `url`, `raw` (path into `raw/`).
 - Log entries prefix: `## [YYYY-MM-DD HH:MM] <op> | <title>` (local time).
+
+## Optional Service Inventory
+
+For infrastructure, software catalog, or homelab-style wikis, copy `templates/service-inventory/wiki/*` into `wiki/`.
+
+This adds a `wiki/services/` folder where each service is one YAML-frontmatter Markdown file, plus `wiki/service-moc.base` for Obsidian Bases.
+
+Service lifecycle uses `state`:
+- `active` — intentionally part of the current system.
+- `disabled` — intentionally stopped or not currently deployed, but worth keeping as a candidate/config record.
+- `deleted` — removed, reset away, obsolete, or no longer worth running.
+
+`status` is runtime state if known, such as `running`, `down`, or `unknown`.
+
+Required service frontmatter:
+
+```yaml
+---
+title: Example Service
+type: service
+state: active
+status: running
+service: Example Service
+machine: example-machine
+category: example
+tailscale_url:
+public_url:
+health_check:
+username:
+password:
+docs:
+github:
+raw:
+---
+```
 
 ## Acronyms & Concepts
 

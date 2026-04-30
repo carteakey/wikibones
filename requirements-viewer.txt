@@ -1,0 +1,8 @@
+# Dependencies for serve.py — the standalone wiki viewer
+# Install once, reuse across all wikibones wikis.
+#
+#   pip install -r requirements-viewer.txt
+
+markdown-it-py>=3.0
+mdit-py-plugins>=0.4
+Pygments>=2.0

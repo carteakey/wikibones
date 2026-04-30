@@ -8,6 +8,7 @@ This file exists so that **any** LLM coding agent — Claude Code, OpenAI Codex,
 
 - **`raw/`** — immutable source documents. Read-only.
 - **`wiki/`** — LLM-maintained markdown pages. All edits here. Source summaries go in `wiki/sources/`.
+- **`templates/`** — optional reusable wiki patterns, such as the service-inventory template.
 - **`CLAUDE.md`** — the wiki schema. Your source of truth for how this wiki works.
 
 ## Key conventions
@@ -18,6 +19,39 @@ This file exists so that **any** LLM coding agent — Claude Code, OpenAI Codex,
 - After any ingest, update `wiki/index.md` and append to `wiki/log.md`.
 - Log entry format: `## [YYYY-MM-DD HH:MM] <op> | <title>`.
 - Voice: opinionated, direct, declarative. Most pages under 800 words.
+
+## Optional service inventory pattern
+
+For infrastructure, software catalog, or homelab-style wikis, copy `templates/service-inventory/wiki/*` into `wiki/`.
+
+- Store one file per service under `wiki/services/<slug>.md`.
+- Every service file starts with YAML frontmatter and `type: service`.
+- Use `state` for lifecycle: `active`, `disabled`, or `deleted`.
+- Use `status` for runtime state if known: `running`, `down`, or `unknown`.
+- `wiki/service-moc.base` is an Obsidian Base dashboard over the service files.
+- Credentials may live in service pages only if the target wiki is private/local by design.
+
+Required service frontmatter:
+
+```yaml
+---
+title: Example Service
+type: service
+state: active
+status: running
+service: Example Service
+machine: example-machine
+category: example
+tailscale_url:
+public_url:
+health_check:
+username:
+password:
+docs:
+github:
+raw:
+---
+```
 
 ## Tool mapping
 

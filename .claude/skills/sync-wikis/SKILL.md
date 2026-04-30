@@ -57,11 +57,15 @@ Read target `CLAUDE.md`, `AGENTS.md`, and skill files before editing.
 6. `.claude/skills/sync-wikis/SKILL.md`
 7. `.claude/skills/upgrade/SKILL.md`
 8. `llm-wiki.md`
+9. `serve.py`
+10. `requirements-viewer.txt`
+11. `templates/`
 
 ### Required adjustments per target
 
 1. `AGENTS.md` skill catalog must reflect the skills that actually exist in that target — don't add entries for skills the target doesn't have.
 2. Keep target-only skills in both filesystem and AGENTS catalog.
+3. Do not overwrite target-customized files under `templates/` without checking the diff first.
 
 ## Step 3 — CLAUDE.md shared sections
 

@@ -44,8 +44,9 @@ import sys, json
 files = json.load(sys.stdin).get('files', [])
 for f in files:
     name = f['filename']
-    if name in ['CLAUDE.md', 'AGENTS.md', 'MANIFEST.md', 'llm-wiki.md'] \
-       or name.startswith('.claude/skills/'):
+    if name in ['CLAUDE.md', 'AGENTS.md', 'MANIFEST.md', 'llm-wiki.md', 'serve.py', 'requirements-viewer.txt'] \
+       or name.startswith('.claude/skills/') \
+       or name.startswith('templates/'):
         print(name)
 "
 ```
@@ -83,6 +84,8 @@ All scaffold files live at the root or in `.claude/skills/` in the wikibones rep
 ${SCAFFOLD_BASE}/CLAUDE.md
 ${SCAFFOLD_BASE}/AGENTS.md
 ${SCAFFOLD_BASE}/llm-wiki.md
+${SCAFFOLD_BASE}/serve.py
+${SCAFFOLD_BASE}/requirements-viewer.txt
 ${SCAFFOLD_BASE}/.claude/skills/ingest/SKILL.md
 ${SCAFFOLD_BASE}/.claude/skills/digest/SKILL.md
 ${SCAFFOLD_BASE}/.claude/skills/lint/SKILL.md
@@ -100,6 +103,8 @@ These files are tooling or agent instructions that the user doesn't customize:
 - `.claude/skills/*/SKILL.md` — skill definitions (overwrite entirely, also add any **new** skills that didn't exist before)
 - `AGENTS.md` — cross-agent instructions
 - `llm-wiki.md` — reference document (read-only)
+- `serve.py` and `requirements-viewer.txt` — local wiki viewer tooling
+- `templates/` — optional scaffold templates, safe to add or update unless the target has customized them locally
 
 For new skills that didn't exist when the wiki was created, create the directory and download:
 ```sh
@@ -124,6 +129,8 @@ For CLAUDE.md:
 Ensure these entries exist (append any missing):
 ```
 publish.json
+.rebuild
+**/.DS_Store
 ```
 
 ### Skip — do not fetch or compare
